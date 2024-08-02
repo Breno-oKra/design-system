@@ -1,79 +1,16 @@
-# arquivo de tipagem global
+# começanco com react
 
-- em base.json vai ficar a tipagem para os projetos que não usam react como o tokens
-
-em react.json que é a tipagem para projetos que vão usar react
-
-- extends para extender a configuração de base.json com mais algumas adicionais
-
-```json
-{
-  "extends": "./base.json",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "lib": ["dom", "ES2015"],
-    "module": "ESNext",
-    "target": "es6"
-  }
-}
-```
-
-# caso queira entender os cada codigo desse faz, ou vai na documentação do typescript ouuu
-
-joga todo o codigo em um arquivo tsconfig.json, e quando passar o mouse por cima ira aparecer oque cada um faz
-
-ex: jogue o codigo nesse arquivo abaixo e veja
-
-```js
-    /packages/tokens/tsconfig.json
-```
-
-# agora referencie eles nos projetos para poder utilizar
-
-- no tokens package.json
-
-```json
-   "devDependencies": {
-        "@igniteOkra-ui/ts-config":"*",
-        "tsup": "^8.2.3",
-        "typescript": "^5.5.4"
-    }
-```
-
-- no react package.json
-
-```json
-   "devDependencies": {
-        "@igniteOkra-ui/tokens":"*",
-        "@igniteOkra-ui/ts-config":"*",
-        "tsup": "^8.2.3",
-        "typescript": "^5.5.4"
-    }
-```
-# depois instalei na raiz design-system
+- instalamos 
 
 ```bash
-    npm i
+    npm i -D react @types/react @types/react-dom 
 ```
+instalamos react como biblioteca de Desenvolvimento pois quando criamos uma biblioteca react, esperamos que quem ira usa-la ja vai ter o react, então deixamos como desenvolvimento para não ter duplicação
 
-# agora relacione a tipagem nos projetos
 
-- crie um arquivo tsconfig.json em cada projeto
-
-- react 
+- agora criamos um scrip no json para dizer, quando for fazer o build, não se preocupar com a importação do react por que ela vai ser externa
 
 ```json
-    {
-        "extends":"@igniteOkra-ui/ts-config/react.json",
-        "include": ["src"],
-    }
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.tsx --format esm,cjs --dts --external react --watch",
 ```
-- tokens
-
-```json
-    {
-        "extends":"@igniteOkra-ui/ts-config/base.json",
-        "include": ["src"],
-    }
-```
-# agora rode um npm run build no projeto react e token. menos no ts-config ja que ele é private
