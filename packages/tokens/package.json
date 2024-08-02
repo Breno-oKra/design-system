@@ -17,6 +17,6 @@
     "@igniteOkra-ui/ts-config":"*",
     "@igniteOkra-ui/eslint-config":"*",
     "tsup": "^8.2.3",
-    "typescript": "^5.5.4"
+     "typescript": "^5.5.4"
   }
 }
