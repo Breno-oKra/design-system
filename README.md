@@ -1,16 +1,17 @@
-# começanco com react
+# iniciando o storybook para visualizar os componentes
 
-- instalamos 
+- priemiro vamos criar um projeto react
+nesse caso iremos usar o vite
 
 ```bash
-    npm i -D react @types/react @types/react-dom 
+    npm create vite@latest docs
 ```
-instalamos react como biblioteca de Desenvolvimento pois quando criamos uma biblioteca react, esperamos que quem ira usa-la ja vai ter o react, então deixamos como desenvolvimento para não ter duplicação
+agora dentro do projeto que criamos iremos criar o storybook
 
-
-- agora criamos um scrip no json para dizer, quando for fazer o build, não se preocupar com a importação do react por que ela vai ser externa
-
-```json
-    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
-    "dev": "tsup src/index.tsx --format esm,cjs --dts --external react --watch",
+```bash
+    storybook@latest init --package-manager npm
 ```
+
+depois so dar um npm i para instalar tudo
+
+- obs: apagamos todos os arquivos do projeto e criamos so oque precisa, o componente Button.stories.tsx
