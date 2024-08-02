@@ -1,5 +1,5 @@
 {
-  "name": "@igniteOkra-ui/tokens",
+  "name":"@igniteOkra-ui/tokens",
   "version": "1.0.0",
   "main": "dist/index.js",
   "module":"dist/index.mjs",
@@ -10,9 +10,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
+    "@igniteOkra-ui/ts-config":"*",
     "tsup": "^8.2.3",
     "typescript": "^5.5.4"
   }

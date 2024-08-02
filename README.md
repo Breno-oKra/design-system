@@ -1,85 +1,79 @@
-- ele vai converter nosso codigo para que possamos usar em outras aplicações
+# arquivo de tipagem global
 
-```bash
-    npm i tsup -D
-```
+- em base.json vai ficar a tipagem para os projetos que não usam react como o tokens
 
-- --format desejamos formattar em ecmascript e commonJS
-- dts exporta os arquivo de definição de tipagem,arquivos que auxiliam na tipagem
+em react.json que é a tipagem para projetos que vão usar react
 
-```json
-   "build": "tsup src/index.ts --format esm,cjs --dts",
-```
-
-<p>agora podemos rodar npm run build para gerar os arquivos, eles seram minificados na pasta dist</p>
-
-```bash
-    npm run build
-```
-
-# usando monorepo
-
-primeiro criamos um package.json na raiz do projeto com nom init -y e depois configuramos
-
-<p>private:true diz que esse pacote não vai ser publicado no npm</p>
-
-- "workspaces" nome das pastas ondes vão estar os repositorios
-  colocamos /\* para dizer todas dentro de packages
+- extends para extender a configuração de base.json com mais algumas adicionais
 
 ```json
 {
-  "private": true,
-  "workspaces": ["packages/*"]
-}
-```
-
-depois pegamos um projeto que vai ter depencia de outro, ou seja ira precisar de bibliotecas parecidas ou iguais:
-
-- exemplo: nosso projeto react precisa das bibliotecas tsup e typescript, ao invez de instalar elas dentro do projeto tokens e dentro do projeto react, pegamos o projeto react e colocamo como dependencia o projeto token, e colocamos o nome dele como esta no package dele
-
-```json
-{
-  "devDependencies": {
-    "@igniteOkra-ui/tokens": "*",
-    "tsup": "^8.2.3",
-    "typescript": "^5.5.4"
+  "extends": "./base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["dom", "ES2015"],
+    "module": "ESNext",
+    "target": "es6"
   }
 }
 ```
 
-<p>agora apartir da pasta raiz, fazemos um npm i, e agora so vai existir uma pasta node_modules, antes tinha uma no projeto react e tokens ja que cada uma tinha suas dependencias, agora esta de modo global na raiz do projeto</p>
+# caso queira entender os cada codigo desse faz, ou vai na documentação do typescript ouuu
 
-# importando as funções no projeto
+joga todo o codigo em um arquivo tsconfig.json, e quando passar o mouse por cima ira aparecer oque cada um faz
 
-para fazer isso:
+ex: jogue o codigo nesse arquivo abaixo e veja
 
-```tsx
-import { colors } from "@igniteOkra-ui/tokens";
+```js
+    /packages/tokens/tsconfig.json
 ```
 
-antes precisamos apontar certinho o arquivo principal de cada projeto que foi feito pelo tsup na pasta dist
+# agora referencie eles nos projetos para poder utilizar
 
-- estava assim
+- no tokens package.json
 
 ```json
-    "name": "@igniteOkra-ui/tokens",
-    "version": "1.0.0",
-    "main": "index.js",
+   "devDependencies": {
+        "@igniteOkra-ui/ts-config":"*",
+        "tsup": "^8.2.3",
+        "typescript": "^5.5.4"
+    }
 ```
 
-- precisamos deixar assim
+- no react package.json
 
 ```json
-    "name": "@igniteOkra-ui/tokens",
-    "version": "1.0.0",
-    "main": "dist/index.js",
-    "module":"dist/index.mjs",
-    "types":"dist/index.d.ts",
+   "devDependencies": {
+        "@igniteOkra-ui/tokens":"*",
+        "@igniteOkra-ui/ts-config":"*",
+        "tsup": "^8.2.3",
+        "typescript": "^5.5.4"
+    }
 ```
-<p> module: é para para projetos que usam      </p>
+# depois instalei na raiz design-system
 
-```html
-    <script type="module" src="endereco"></script> 
+```bash
+    npm i
 ```
 
-<p> types é para apontar o arquivo de tipagem para o tupescript usar </p>
+# agora relacione a tipagem nos projetos
+
+- crie um arquivo tsconfig.json em cada projeto
+
+- react 
+
+```json
+    {
+        "extends":"@igniteOkra-ui/ts-config/react.json",
+        "include": ["src"],
+    }
+```
+- tokens
+
+```json
+    {
+        "extends":"@igniteOkra-ui/ts-config/base.json",
+        "include": ["src"],
+    }
+```
+# agora rode um npm run build no projeto react e token. menos no ts-config ja que ele é private
