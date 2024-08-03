@@ -1,0 +1,14 @@
+import { Meta,Unstyled } from "@storybook/addon-docs"
+import {TokensGrid} from '../../components/TokensGrid.tsx'
+import {space} from '@igniteOkra-ui/tokens'
+
+<Meta title="Tokens/Spaces"/>
+
+# COLORS
+
+essas são as minhas cores
+
+{/* Unstyled é para não pegar o style padrão so storybook */}
+<Unstyled>
+    <TokensGrid tokens={space} hasRemValue/>
+</Unstyled>
