@@ -1,1 +1,8 @@
 node_modules
+.turbo
+*.stories.d.ts
+*.d.ts
+*.stories.d.ts.map
+*.d.ts.map
+*.stories.js
+dist
