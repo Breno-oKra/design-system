@@ -24,5 +24,9 @@ const config: StorybookConfig = {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
+  // autodocs:true, Com a chegada do v7, as docs de todos os componentes não estavam sendo geradas automaticamente.en~tao configuramos
+  docs:{
+    autodocs:true
+  }
 };
 export default config;
