@@ -8,6 +8,28 @@ export default {
   args: {
     children: 'Send',
   },
+  argTypes: {
+    // criadno um controle para variar os button ao invez de digitar
+    variant: {
+      options: ['primary', 'secondary', 'tertiary'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+    size: {
+      options: ['sm', 'md'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    // capturando um click no storybook
+    onClick: { action: 'clicked' },
+  },
 } as Meta<ButtonProps>
 
 export const Primary: StoryObj<ButtonProps> = {}

@@ -8,14 +8,16 @@
     "build": "storybook build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "dev-vite":"vite",
-    "build-vite": "tsc -b && vite build "
+    "dev-vite": "vite",
+    "build-vite": "tsc -b && vite build ",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "dependencies": {
     "@igniteOkra-ui/eslint-config": "*",
     "@igniteOkra-ui/react": "*",
     "@igniteOkra-ui/tokens": "*",
     "@igniteOkra-ui/ts-config": "*",
+    "@storybook/addon-a11y": "^8.2.7",
     "polished": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -29,6 +31,7 @@
     "@storybook/blocks": "^8.2.7",
     "@storybook/react": "^8.2.7",
     "@storybook/react-vite": "^8.2.7",
+    "@storybook/storybook-deployer": "^2.8.16",
     "@storybook/test": "^8.2.7",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
